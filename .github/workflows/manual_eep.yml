@@ -19,7 +19,7 @@ on:
         # Friendly description to be shown in the UI instead of 'name'
         description: 'ESP board type'
         # Default value if no value is explicitly provided
-        default: 'lolin32'
+        default: 'lolin32-lite'
         # Input has to be provided for the workflow to run
         required: true
 
