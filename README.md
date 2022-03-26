@@ -3,4 +3,4 @@
 ESP_Blink is an example to build ESP firmware binaries in the GitHub Workflow with the help of [ESP_Action_Build_Scripts](https://github.com/hredan/ESP_Action_Build_Scripts)
 
 # Disclaimer
-All this code is released under the GPL, and all of it is to be used at your own risk. If you find any bugs, please let me know via the GitHub issue tracker or drop me an email ([hredan@sleepuino.info](mailto:hredan@sleepuino.info)).
+All this code is released under the GPL, and all of it is to be used at your own risk. If you find any bugs, please let me know via the GitHub issue tracker or drop me an email ([hredan@sleepuino.de](mailto:hredan@sleepuino.de)).
