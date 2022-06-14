@@ -39,7 +39,10 @@ jobs:
           submodules: recursive
       - uses: actions/setup-python@v2
       - run: pip install esptool
-      - run: sh ./ESP_Action_Build_Scripts/build_sketch.sh -s ${{env.SKETCH_NAME}} -c ${{ github.event.inputs.core }} -b ${{ github.event.inputs.board }} -f 160
+      - run: |
+          bash ./ESP_Action_Build_Scripts/build_sketch.sh -s ${{env.SKETCH_NAME}} -c ${{ github.event.inputs.core }} -b ${{ github.event.inputs.board }} -f 160
+          bash ./ESP_Build_Scrips/create_build_info.sh -s $GITHUB_SHA -r $GITHUB_REPOSITORY
+        name: Build_ESP_Binaries
       - uses: actions/upload-artifact@v2
         with:
           name: ${{ github.event.inputs.core }}_${{ github.event.inputs.board }}_${{env.SKETCH_NAME}}
