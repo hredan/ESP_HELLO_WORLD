@@ -48,8 +48,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: ./${{env.CORE_1}}_${{env.BOARD_1}}_${{SKETCH_NAME}}.eep
-          asset_name: ${{env.CORE_1}}_${{env.BOARD_1}}_${{SKETCH_NAME}}.eep
+          asset_path: ./${{env.CORE_1}}_${{env.BOARD_1}}_${{env.SKETCH_NAME}}.eep
+          asset_name: ${{env.CORE_1}}_${{env.BOARD_1}}_${{env.SKETCH_NAME}}.eep
           asset_content_type: application/zip
       - name: Upload Release Asset esp32
         id: upload-release-asset-esp32 
@@ -58,6 +58,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: ./${{env.CORE_2}}_${{env.BOARD_2}}_${{SKETCH_NAME}}.eep
-          asset_name: ${{env.CORE_2}}_${{env.BOARD_2}}_${{SKETCH_NAME}}.eep
+          asset_path: ./${{env.CORE_2}}_${{env.BOARD_2}}_${{env.SKETCH_NAME}}.eep
+          asset_name: ${{env.CORE_2}}_${{env.BOARD_2}}_${{env.SKETCH_NAME}}.eep
           asset_content_type: application/zip
