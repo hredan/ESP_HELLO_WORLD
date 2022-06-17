@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - name: Get the tag name
         run: echo "TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
       - name: Build esp8266 binaries and create eep file
