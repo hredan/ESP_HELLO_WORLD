@@ -33,6 +33,16 @@ jobs:
           bash ./ESP_Build_Scripts/build_sketch.sh -s ${{env.SKETCH_NAME}} -c ${{env.CORE_2}} -b ${{env.BOARD_2}} -f 160
           bash ./ESP_Build_Scripts/create_build_info.sh -s $GITHUB_SHA -r $GITHUB_REPOSITORY -t ${{env.TAG}}
           bash ./ESP_Build_Scripts/create_eef_package.sh -s ${{env.SKETCH_NAME}} -c ${{env.CORE_2}} -b ${{env.BOARD_2}}
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
       - name: Upload Release Asset esp8266
         id: upload-release-asset-esp8266 
         uses: actions/upload-release-asset@v1
