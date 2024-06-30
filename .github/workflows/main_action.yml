@@ -15,28 +15,6 @@ jobs:
       - uses: arduino/arduino-lint-action@v1
         with:
           library-manager: 'update'
-  build_ESP32:
-    needs: [cpplint, arduino_lint]
-    runs-on: ubuntu-latest
-    env:
-        SKETCH_NAME: ESP_Blink
-        CORE: esp32
-        BOARD: d1_mini32
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: recursive
-      - uses: actions/setup-python@v2
-      - run: pip install esptool
-      - run: |
-          bash ./ESP_Build_Scripts/build_sketch.sh -s ${{env.SKETCH_NAME}} -c ${{env.CORE}} -b ${{env.BOARD}} -f 160
-          bash ./ESP_Build_Scripts/create_build_info.sh -s $GITHUB_SHA -r $GITHUB_REPOSITORY
-        name: Build_ESP_Binaries
-      - uses: actions/upload-artifact@v2
-        with:
-          name: ${{env.CORE}}_${{env.BOARD}}_${{env.SKETCH_NAME}}
-          path: ./EEP/*
-  
   build_ESP8266:
     runs-on: ubuntu-latest
     needs: [cpplint, arduino_lint]
@@ -45,16 +23,8 @@ jobs:
         CORE: esp8266
         BOARD: d1_mini
     steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: recursive
+      - uses: actions/checkout@v4
       - uses: actions/setup-python@v2
-      - run: pip install esptool
-      - run: |
-          bash ./ESP_Build_Scripts/build_sketch.sh -s ${{env.SKETCH_NAME}} -c ${{env.CORE}} -b ${{env.BOARD}} -f 160
-          bash ./ESP_Build_Scripts/create_build_info.sh -s $GITHUB_SHA -r $GITHUB_REPOSITORY
-        name: Build_ESP_Binaries
-      - uses: actions/upload-artifact@v2
+      - uses: hredan/ESP_Build_Scripts@master
         with:
-          name: ${{env.CORE}}_${{env.BOARD}}_${{env.SKETCH_NAME}}
-          path: ./EEP/*
+          sketch-name: 'ESP_Blink'
