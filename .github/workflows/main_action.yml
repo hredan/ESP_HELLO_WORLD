@@ -4,14 +4,16 @@ jobs:
   cpplint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
     - run: pip install cpplint
     - run: cpplint --filter=-legal/copyright --linelength=120 --extensions=hpp,cpp,h,c,ino --recursive .
   arduino_lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: arduino/arduino-lint-action@v1
         with:
           library-manager: 'update'
@@ -24,7 +26,6 @@ jobs:
         BOARD: d1_mini
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v2
       - uses: hredan/ESP_Build_Scripts@master
         with:
           sketch-name: 'ESP_Blink'
