@@ -29,6 +29,8 @@ jobs:
       - uses: hredan/ESP_Build_Scripts@master
         with:
           sketch-name: ${{env.SKETCH_NAME}}
+          core: ${{env.CORE}}
+          board: ${{env.BOARD}}
       - uses: actions/upload-artifact@v4
         with:
           name: ${{env.CORE}}_${{env.BOARD}}_${{env.SKETCH_NAME}}
