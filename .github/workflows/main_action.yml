@@ -33,5 +33,5 @@ jobs:
           board: ${{env.BOARD}}
       - uses: actions/upload-artifact@v4
         with:
-          name: ${{env.CORE}}_${{env.BOARD}}_${{env.SKETCH_NAME}}
-          path: ./EEP/*
+          name: ${{env.CORE}}_${{env.BOARD}}_${{env.SKETCH_NAME}}.eep
+          path: ./${{env.CORE}}_${{env.BOARD}}_${{env.SKETCH_NAME}}.eep
