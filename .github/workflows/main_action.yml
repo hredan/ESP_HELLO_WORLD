@@ -26,7 +26,7 @@ jobs:
         BOARD: d1_mini
     steps:
       - uses: actions/checkout@v4
-      - uses: hredan/eep_build_action@main
+      - uses: hredan/eep-build-action@main
         with:
           sketch-name: ${{env.SKETCH_NAME}}
           core: ${{env.CORE}}
@@ -40,7 +40,7 @@ jobs:
         BOARD: d1_mini32
     steps:
       - uses: actions/checkout@v4
-      - uses: hredan/eep_build_action@main
+      - uses: hredan/eep-build-action@main
         with:
           sketch-name: ${{env.SKETCH_NAME}}
           core: ${{env.CORE}}
