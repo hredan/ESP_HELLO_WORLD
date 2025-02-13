@@ -53,19 +53,19 @@ jobs:
     env:
         TARGET: win64
     steps:
-      - uses: actions/checkout@v4
-      - name: download all artifacts
-        uses: actions/download-artifact@v4
-        with:
-          path: ./artifacts
-          merge-multiple: false
-      - name: Check artifacts
-        run: |
-          cd ./artifacts
-          ls -Rla
-      - run: |
-            pwd
-            ls -Rla
-      # - uses: hredan/eef-carefree-action@init
+      # - uses: actions/checkout@v4
+      # - name: download all artifacts
+      #   uses: actions/download-artifact@v4
       #   with:
-      #     target-os: ${{env.TARGET}}
+      #     path: ./artifacts
+      #     merge-multiple: false
+      # - name: Check artifacts
+      #   run: |
+      #     cd ./artifacts
+      #     ls -Rla
+      # - run: |
+      #       pwd
+      #       ls -Rla
+      - uses: hredan/eef-carefree-action@init
+        with:
+          target-os: ${{env.TARGET}}
