@@ -53,6 +53,7 @@ jobs:
     env:
         TARGET: win64
     steps:
+      - uses: actions/checkout@v4
       - name: download all artifacts
         uses: actions/download-artifact@v4
         with:
@@ -62,7 +63,6 @@ jobs:
         run: |
           cd ./artifacts
           ls -Rla
-      - uses: actions/checkout@v4
       - run: |
             pwd
             ls -Rla
