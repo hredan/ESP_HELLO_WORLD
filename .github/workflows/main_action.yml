@@ -4,6 +4,7 @@ jobs:
   test:
     uses: ./.github/workflows/test.yml
   build_eeps:
+    needs: [test]
     uses: ./.github/workflows/build_eeps.yml
   build_EEF_packages:
     runs-on: ubuntu-latest
