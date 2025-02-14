@@ -1,55 +1,13 @@
 name: main_action
 on: [push, pull_request]
 jobs:
-  cpplint:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
-    - run: pip install cpplint
-    - run: cpplint --filter=-legal/copyright --linelength=120 --extensions=hpp,cpp,h,c,ino --recursive .
-  arduino_lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: arduino/arduino-lint-action@main
-        with:
-          library-manager: 'update'
-  build_ESP8266:
-    runs-on: ubuntu-latest
-    needs: [cpplint, arduino_lint]
-    env:
-        SKETCH_NAME: ESP_HELLO_WORLD
-        CORE: esp8266
-        BOARD: d1_mini
-    steps:
-      - uses: actions/checkout@v4
-      - uses: hredan/eep-build-action@main
-        with:
-          sketch-name: ${{env.SKETCH_NAME}}
-          core: ${{env.CORE}}
-          board: ${{env.BOARD}}
-          libs: "Dictionary"
-  build_ESP32:
-    runs-on: ubuntu-latest
-    needs: [cpplint, arduino_lint]
-    env:
-        SKETCH_NAME: ESP_HELLO_WORLD 
-        CORE: esp32
-        BOARD: d1_mini32
-    steps:
-      - uses: actions/checkout@v4
-      - uses: hredan/eep-build-action@main
-        with:
-          sketch-name: ${{env.SKETCH_NAME}}
-          core: ${{env.CORE}}
-          board: ${{env.BOARD}}
-          libs: "Dictionary"
+  test:
+    uses: ./.github/workflows/test.yml
+  build_eeps:
+    uses: ./.github/workflows/build_eeps.yml
   build_EEF_packages:
     runs-on: ubuntu-latest
-    needs: [build_ESP8266, build_ESP32]
+    needs: [build_eeps]
     env:
         TARGET: win64
     steps:
