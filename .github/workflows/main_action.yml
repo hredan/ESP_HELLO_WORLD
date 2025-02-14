@@ -47,25 +47,12 @@ jobs:
           core: ${{env.CORE}}
           board: ${{env.BOARD}}
           libs: "Dictionary"
-  build_EEF_Win64:
+  build_EEF_packages:
     runs-on: ubuntu-latest
     needs: [build_ESP8266, build_ESP32]
     env:
         TARGET: win64
     steps:
-      # - uses: actions/checkout@v4
-      # - name: download all artifacts
-      #   uses: actions/download-artifact@v4
-      #   with:
-      #     path: ./artifacts
-      #     merge-multiple: false
-      # - name: Check artifacts
-      #   run: |
-      #     cd ./artifacts
-      #     ls -Rla
-      # - run: |
-      #       pwd
-      #       ls -Rla
       - uses: hredan/eef-carefree-action@init
         with:
           target-os: ${{env.TARGET}}
