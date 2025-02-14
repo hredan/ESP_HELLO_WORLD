@@ -1,7 +1,11 @@
 /*
-  ESP Hello World
-  This sketch will send the message "Hello World" in Morse code using the LED_BUILTIN.
-  https://en.wikipedia.org/wiki/Morse_code
+  Project: ESP Hello World
+  Project URL: https://github.com/hredan/ESP_HELLO_WORLD
+  Description:
+  This sketch will send the message "Hello World" as Morse code and using the LED_BUILTIN.
+  It is an example of how to share esp projects with the ESPEasyFlasher_2.0 for different platforms.
+  The release assets are build for the boards esp8266_d1_mini and esp32_d1_mini32.
+  If you need this example for another esp board, you can fork this project and run the manual workflow with settings of your board.
 */
 #include <Arduino.h>
 #include <Dictionary.h>
@@ -9,7 +13,8 @@
 Dictionary *dict = new Dictionary();
 String text = "HELLO WORLD";
 
-int dit = 150;
+// https://en.wikipedia.org/wiki/Morse_code#Representation,_timing,_and_speeds
+int dit = 80;
 int dah = 3 * dit;
 int symbol_space = dit;
 int letter_space = 3 * dit;
