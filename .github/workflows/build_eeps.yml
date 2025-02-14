@@ -1,31 +1,26 @@
 on:
     workflow_call:
+      inputs:
+        core:
+          description: 'ESP core (esp8266 or esp32)'
+          default: 'esp32'
+          required: true
+          type: string
+        board:
+          description: 'ESP board'
+          default: 'd1_mini32'
+          type: string
+          required: true
 jobs:
-    build_ESP8266:
+    build_eep:
         runs-on: ubuntu-latest
         env:
             SKETCH_NAME: ESP_HELLO_WORLD
-            CORE: esp8266
-            BOARD: d1_mini
         steps:
           - uses: actions/checkout@v4
           - uses: hredan/eep-build-action@main
             with:
               sketch-name: ${{env.SKETCH_NAME}}
-              core: ${{env.CORE}}
-              board: ${{env.BOARD}}
-              libs: "Dictionary"
-    build_ESP32:
-        runs-on: ubuntu-latest
-        env:
-            SKETCH_NAME: ESP_HELLO_WORLD 
-            CORE: esp32
-            BOARD: d1_mini32
-        steps:
-          - uses: actions/checkout@v4
-          - uses: hredan/eep-build-action@main
-            with:
-              sketch-name: ${{env.SKETCH_NAME}}
-              core: ${{env.CORE}}
-              board: ${{env.BOARD}}
+              core: ${{ inputs.core }}
+              board: ${{ inputs.board}}
               libs: "Dictionary"
