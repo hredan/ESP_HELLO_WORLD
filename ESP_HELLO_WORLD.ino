@@ -10,6 +10,13 @@
 #include <Arduino.h>
 #include <Dictionary.h>
 
+#define LED LED_BUILTIN
+//#define LED 4
+//For my ESP32 mini board, the built-in LED is inverted
+#ifdef ESP32
+  #define INVERT_LED
+#endif
+
 Dictionary *dict = new Dictionary();
 String text = "HELLO WORLD";
 
@@ -25,7 +32,7 @@ void setup() {
   Serial.println("");
   Serial.println("Starts Hello World");
   Serial.printf("Built-in LED on GPIO PIN: %d\n", LED_BUILTIN);
-  pinMode(LED_BUILTIN, OUTPUT);     // Initialize the LED_BUILTIN pin as an output
+  pinMode(LED, OUTPUT);     // Initialize the LED_BUILTIN pin as an output
 
   dict->insert("H", "....");
   dict->insert("E", ".");
@@ -49,15 +56,9 @@ void loop() {
     for (int j = 0; j < morse.length(); j++) {
       char symbol = morse.charAt(j);
       if (symbol == '.') {
-        digitalWrite(LED_BUILTIN, LOW);
-        delay(dit);
-        digitalWrite(LED_BUILTIN, HIGH);
-        delay(symbol_space);
+        ledOnForTimespan(dit);
       } else if (symbol == '-') {
-        digitalWrite(LED_BUILTIN, LOW);
-        delay(dah);
-        digitalWrite(LED_BUILTIN, HIGH);
-        delay(symbol_space);
+        ledOnForTimespan(dah);
       } else if (symbol == ' ') {
         delay(word_space);
       }
@@ -65,4 +66,20 @@ void loop() {
     delay(letter_space);
   }
   Serial.println("End loop");
+}
+
+void ledOnForTimespan(int timespan)
+{
+  #ifdef INVERT_LED
+      digitalWrite(LED, LOW);
+  #else
+      digitalWrite(LED, HIGH);
+  #endif
+  delay(timespan);
+  #ifdef INVERT_LED
+      digitalWrite(LED, HIGH);
+  #else
+      digitalWrite(LED, LOW);
+  #endif
+  delay(symbol_space);
 }
