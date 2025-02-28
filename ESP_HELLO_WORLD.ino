@@ -12,8 +12,8 @@
 
 #define LED LED_BUILTIN
 // #define LED 4
-// For my ESP32 mini board, the built-in LED is inverted
-#ifdef ESP32
+// For my ESP8266 mini board, the built-in LED is inverted
+#ifdef ESP8266
   #define INVERT_LED
 #endif
 
