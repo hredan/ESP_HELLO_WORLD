@@ -11,8 +11,8 @@
 #include <Dictionary.h>
 
 #define LED LED_BUILTIN
-//#define LED 4
-//For my ESP32 mini board, the built-in LED is inverted
+// #define LED 4
+// For my ESP32 mini board, the built-in LED is inverted
 #ifdef ESP32
   #define INVERT_LED
 #endif
@@ -68,8 +68,7 @@ void loop() {
   Serial.println("End loop");
 }
 
-void ledOnForTimespan(int timespan)
-{
+void ledOnForTimespan(int timespan) {
   #ifdef INVERT_LED
       digitalWrite(LED, LOW);
   #else
